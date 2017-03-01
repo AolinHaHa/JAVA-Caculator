@@ -1,0 +1,52 @@
+Package hw3;
+
+/* Define Helpers and Tokens below */
+
+Helpers
+
+    digit = ['0' .. '9'];
+    
+    tab = 9;
+    cr = 13;
+    lf = 10;
+    eol = cr lf | cr | lf; // This takes care of different platforms
+    blank_help = (' ' | tab | eol)+;
+
+Tokens
+    number = digit+ ('.' digit+)?;
+    plus = '+';
+    minus = '-';
+    star = '*';
+    slash = '/';
+    equal = '=';
+    l_par = '(';
+    r_par = ')';
+    blank = blank_help;
+    
+Ignored Tokens
+    blank;
+    
+Productions
+    expr_list
+    		= {none}
+    		| {some} [first]:expr [rest]:expr_list
+    		;
+    
+    expr
+    		= {add} [left]:expr plus [right]:term
+    		| {sub} [left]:expr minus [right]:term
+    		| {term} term
+    		;
+    
+    term
+    		= {mul} [left]:term star [right]:atom
+    		| {div} [left]:term slash [right]:atom
+    		| {atom} atom
+    		;
+    		
+    atom
+    		= {number} number
+    		| {paren} l_par expr r_par
+    		;
+    
+

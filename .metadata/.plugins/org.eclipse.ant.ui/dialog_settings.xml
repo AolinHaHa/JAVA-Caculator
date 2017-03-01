@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="false" key="AntPropertiesFileSelectionDialog.showAll"/>
+	<item value="/HW1" key="AntPropertiesFileSelectionDialog.lastContainer"/>
+	<section name="SetTargetsDialogSettings">
+		<item value="374" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="400" key="DIALOG_HEIGHT"/>
+		<item value="85" key="DIALOG_Y_ORIGIN"/>
+		<item value="139" key="DIALOG_X_ORIGIN"/>
+	</section>
+</section>

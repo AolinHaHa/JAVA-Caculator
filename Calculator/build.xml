@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Jan 27, 2015 9:52:54 AM                                                        
+
+     project    
+     description
+                   
+     WMarrero                                                                
+     ====================================================================== -->
+<project name="Calculator" default="build">
+	<description>
+		Homework 3.  Simple Calculator
+    </description>
+
+	<property environment="env"/>
+
+	<target name="build" depends="clean-all,build-parser">
+		<javac srcdir="parser:src" destdir="bin" debug="true" deprecation="on" classpath="lib/sablecc.jar" includeantruntime="false">
+			<!-- <compilerarg value="-Xlint:unchecked"/> -->
+		</javac>
+		<copy file="parser/hw3/lexer/lexer.dat" todir="bin/hw3/lexer" overwrite="true" />
+		<copy file="parser/hw3/parser/parser.dat" todir="bin/hw3/parser" overwrite="true" />
+		<tstamp>
+			<format property="date.time" pattern="yyyy-MM-dd-HH-mm-ss" />
+		</tstamp>
+		<echo append="true" file="log.txt">
+		      Compiled by ${user.name} on ${date.time}
+		</echo>
+	</target>
+
+	<target name="build-parser" depends="clean-parser">
+		<java jar="lib/sablecc.jar" dir="parser" fork="true">
+			<arg file="parser/parser.sable" />
+		</java>
+	</target>
+
+
+	<target name="clean-parser">
+		<delete dir="parser/hw3" />
+	</target>
+	
+	<target name="clean-tests">
+		<delete>
+			<fileset dir="tests" includes="TEST*.txt" />
+			<fileset dir="tests" includes="test*.s" />
+			<fileset dir="tests" includes="test*.exe" />
+		</delete>
+	</target>
+	
+	<target name="clean-all" depends="clean-tests">
+		<delete dir="parser/hw3" />
+		<delete dir="bin" />
+		<mkdir dir="bin" />
+		<delete>
+			<fileset dir="." includes="submit-*.zip" />
+			<fileset dir="." includes="output-*" />
+			<fileset defaultexcludes="no" dir="." includes="**/*~" />
+			<fileset dir="." includes="**/large.*" />
+		</delete>
+	</target>
+
+	<target name="test1">
+		<java classname="hw3.Main" dir="bin" fork="true">
+			<arg file="tests\initial.txt" />
+			<arg file="tests\TEST1.txt" />
+			<!-- <arg value="-v"/> -->
+		</java>
+	</target>
+	
+	<target name="test2">
+		<java classname="hw3.Main" dir="bin" fork="true">
+			<arg file="tests\power.txt" />
+			<arg file="tests\TEST2.txt" />
+			<!-- <arg value="-v"/> -->
+		</java>
+	</target>
+	
+	<target name="test3">
+		<java classname="hw3.Main" dir="bin" fork="true">
+			<arg file="tests\round.txt" />
+			<arg file="tests\TEST3.txt" />
+			<!-- <arg value="-v"/> -->
+		</java>
+	</target>
+
+	<target name="submit" depends="clean-all,build,test1,test2,test3">
+		<tstamp>
+			<format property="date.time" pattern="yyyy-MM-dd-HH-mm-ss" />
+		</tstamp>
+		<echo append="true" file="log.txt">
+	      Submission created by ${user.name} on ${date.time}
+	    </echo>
+		<zip zipfile="submit-${date.time}.zip" basedir=".." includes="**/Calculator/**,**/.metadata/**" excludes="bin/**/*,bin,submit-*.zip" />
+	</target>
+
+
+</project>

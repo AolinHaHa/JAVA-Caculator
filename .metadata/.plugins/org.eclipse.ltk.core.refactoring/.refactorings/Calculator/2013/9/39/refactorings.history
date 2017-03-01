@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;HW2&apos;&#x0D;&#x0A;- Original project: &apos;HW2&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     HW2/lexer/hw2.analysis&#x0D;&#x0A;     HW2/lexer/hw2.lexer&#x0D;&#x0A;     HW2/lexer/hw2.node" description="Delete elements" element1="/lexer&lt;hw2.node" element2="/lexer&lt;hw2" element3="/lexer&lt;hw2.lexer" element4="/lexer&lt;hw2" element5="/lexer&lt;hw2.analysis" element6="/lexer&lt;hw2" elements="6" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1379965136116" subPackages="false" version="1.0"/>
+</session>
